@@ -32,7 +32,7 @@ else:
 
 setup(
     name="phenocover",
-    version="0.1.0",
+    version="1.0.0",
     author="Joseph Gitahi",
     author_email="joemureithi@live.com",
     description="Weather-Enhanced Wheat Phenology and Ground Cover Estimation Tool",

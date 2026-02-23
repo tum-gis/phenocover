@@ -1,0 +1,33 @@
+# Version control
+.git
+.gitignore
+
+# Python cache / build artefacts
+__pycache__
+*.py[cod]
+*.egg-info
+*.egg
+build/
+dist/
+.eggs/
+
+# Virtual environments
+.venv
+venv
+env
+
+# Logs and data
+logs/
+*.log
+*.csv
+
+# Development / editor files
+.vscode
+.idea
+*.swp
+*.swo
+.DS_Store
+
+# CI / Docker itself
+.dockerignore
+Dockerfile

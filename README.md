@@ -34,6 +34,46 @@ pip install -e .
 
 For detailed installation instructions, see [INSTALL.md](/phenocover/docs/INSTALL.md).
 
+### Docker
+
+No local Python environment needed — the image uses a slim, two-stage build and runs as a non-root user.
+
+**Build the image:**
+
+```bash
+docker build -t phenocover .
+```
+
+**Show CLI help:**
+
+```bash
+docker run --rm phenocover --help
+```
+
+**Run an analysis** (mount your data directory into the container):
+
+```bash
+docker run --rm \
+  -v "$(pwd):/data" \
+  -w /data \
+  phenocover phenology-analyzer \
+    --ndvi-file "NDVI_ Treatment Parcel - 0-data-2025-07-04 15_11_14.csv" \
+    --sowing-date "03.10.2023" \
+    --harvest-date "30.07.2024" \
+    --geojson-file "field_location.geojson"
+```
+
+> **Windows (PowerShell):** replace `$(pwd)` with `${PWD}`.
+
+Output files (CSV, PNG, logs) are written back to your current directory via the bind-mount.
+
+**Generate a config file:**
+
+```bash
+docker run --rm -v "$(pwd):/data" -w /data \
+  phenocover generate-config --format yaml --output config.yml
+```
+
 ## Quick Start
 
 ### 1. Verify Installation
@@ -384,20 +424,6 @@ growth_stages = {
 - **Formula**: GDD = max(0, (T_max + T_min) / 2 - T_base)
 - **Base Temperature**: 0°C for wheat
 - **Interpretation**: Accumulated heat units for plant development
-
-## Installation
-
-### Option 1: Manual Installation
-
-```bash
-pip install -r requirements.txt
-```
-
-### Option 2: Automated Setup
-
-```bash
-python setup.py
-```
 
 ## Usage Examples
 
